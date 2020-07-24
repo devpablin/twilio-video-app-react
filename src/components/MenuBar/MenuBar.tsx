@@ -68,7 +68,7 @@ export default function MenuBar() {
 
   const [name, setName] = useState<string>(user?.displayName || '');
   const [roomName, setRoomName] = useState<string>('');
-
+  const [password, setPassword] = useState<string>('');
   useEffect(() => {
     if (URLRoomName) {
       setRoomName(URLRoomName);
@@ -81,6 +81,10 @@ export default function MenuBar() {
 
   const handleRoomNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setRoomName(event.target.value);
+  };
+
+  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -100,7 +104,7 @@ export default function MenuBar() {
             {window.location.search.includes('customIdentity=true') || !user?.displayName ? (
               <TextField
                 id="menu-name"
-                label="Name"
+                label="Nombre"
                 className={classes.textField}
                 value={name}
                 onChange={handleNameChange}
@@ -113,11 +117,18 @@ export default function MenuBar() {
             )}
             <TextField
               id="menu-room"
-              label="Room"
+              label="Sala"
               className={classes.textField}
               value={roomName}
               onChange={handleRoomNameChange}
               margin="dense"
+            />
+            <TextField
+              id="password-room"
+              label="Contraseña"
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
             />
             <Button
               className={classes.joinButton}
