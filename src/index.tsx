@@ -15,6 +15,7 @@ import theme from './theme';
 import './types';
 import { VideoProvider } from './components/VideoProvider';
 import UnsupportedBrowserWarning from './components/UnsupportedBrowserWarning/UnsupportedBrowserWarning';
+import RoomMenu from './components/RoomOptions/RoomMenu';
 
 const VideoApp = () => {
   const { error, setError, settings } = useAppState();
@@ -37,6 +38,9 @@ ReactDOM.render(
       <AppStateProvider>
         <Switch>
           <PrivateRoute exact path="/">
+            <RoomMenu />
+          </PrivateRoute>
+          <PrivateRoute exact path="/join">
             <VideoApp />
           </PrivateRoute>
           <PrivateRoute path="/room/:URLRoomName">
