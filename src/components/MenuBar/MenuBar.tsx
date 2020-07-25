@@ -109,6 +109,7 @@ export default function MenuBar() {
                 value={name}
                 onChange={handleNameChange}
                 margin="dense"
+                autoComplete="none"
               />
             ) : (
               <Typography className={classes.displayName} variant="body1">
@@ -129,6 +130,7 @@ export default function MenuBar() {
               type="password"
               value={password}
               onChange={handlePasswordChange}
+              autoComplete="none"
             />
             <Button
               className={classes.joinButton}
