@@ -68,7 +68,7 @@ export default function MenuBar() {
 
   const [name, setName] = useState<string>(user?.displayName || '');
   const [roomName, setRoomName] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  // const [password, setPassword] = useState<string>('');
   useEffect(() => {
     if (URLRoomName) {
       setRoomName(URLRoomName);
@@ -83,9 +83,9 @@ export default function MenuBar() {
     setRoomName(event.target.value);
   };
 
-  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
+  // const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setPassword(event.target.value);
+  // };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -93,7 +93,7 @@ export default function MenuBar() {
     if (!window.location.origin.includes('twil.io')) {
       window.history.replaceState(null, '', window.encodeURI(`/room/${roomName}${window.location.search || ''}`));
     }
-    getToken(name, roomName, password).then(token => connect(token));
+    getToken(name, roomName).then(token => connect(token));
   };
 
   return (
@@ -124,7 +124,7 @@ export default function MenuBar() {
               onChange={handleRoomNameChange}
               margin="dense"
             />
-            <TextField
+            {/* <TextField
               id="password-room"
               label="Contraseña"
               type="password"
@@ -139,13 +139,13 @@ export default function MenuBar() {
                   autocomplete: 'off',
                 },
               }}
-            />
+            /> */}
             <Button
               className={classes.joinButton}
               type="submit"
               color="primary"
               variant="contained"
-              disabled={isAcquiringLocalTracks || isConnecting || !name || !roomName || !password || isFetching}
+              disabled={isAcquiringLocalTracks || isConnecting || !name || !roomName || isFetching}
             >
               Join Room
             </Button>
