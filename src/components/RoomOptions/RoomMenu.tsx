@@ -18,7 +18,7 @@ export default function App() {
   return (
     <Container style={{ height }}>
       <Grid container direction="column" justify="center" alignItems="center" className="room-menu-options">
-        <Link to="/">
+        <Link to="/create">
           <Button variant="contained" color="primary">
             Crear Sala
           </Button>
