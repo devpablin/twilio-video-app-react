@@ -10,7 +10,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Menu from './Menu/Menu';
 
 import { useAppState } from '../../state';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import useRoomState from '../../hooks/useRoomState/useRoomState';
 import useVideoContext from '../../hooks/useVideoContext/useVideoContext';
 import { Typography } from '@material-ui/core';
@@ -128,25 +128,39 @@ export default function MenuBar() {
               id="password-room"
               label="Contraseña"
               type="password"
+              className={classes.textField}
               value={password}
               onChange={handlePasswordChange}
               autoComplete="none"
+              margin="dense"
+              inputProps={{
+                autocomplete: 'new-password',
+                form: {
+                  autocomplete: 'off',
+                },
+              }}
             />
             <Button
               className={classes.joinButton}
               type="submit"
               color="primary"
               variant="contained"
-              disabled={isAcquiringLocalTracks || isConnecting || !name || !roomName || isFetching}
+              disabled={isAcquiringLocalTracks || isConnecting || !name || !roomName || !password || isFetching}
             >
               Join Room
             </Button>
+
             {(isConnecting || isFetching) && <CircularProgress className={classes.loadingSpinner} />}
           </form>
         ) : (
           <h3>{roomName}</h3>
         )}
         <div className={classes.rightButtonContainer}>
+          {roomState === 'disconnected' && (
+            <Link to="/" style={{ marginRight: '1em', textDecoration: 'none' }}>
+              <Button color="primary">Salir</Button>
+            </Link>
+          )}
           <FlipCameraButton />
           <LocalAudioLevelIndicator />
           <ToggleFullscreenButton />

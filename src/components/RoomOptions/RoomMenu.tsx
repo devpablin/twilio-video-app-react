@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import './RoomMenu.css';
 
@@ -16,17 +17,19 @@ export default function App() {
 
   return (
     <Container style={{ height }}>
-      <div className="room-menu-options">
-        <Button variant="contained" color="primary">
-          Crear Sala
-        </Button>
+      <Grid container direction="column" justify="center" alignItems="center" className="room-menu-options">
+        <Link to="/">
+          <Button variant="contained" color="primary">
+            Crear Sala
+          </Button>
+        </Link>
 
         <Link to="/join">
           <Button variant="contained" color="primary">
             Unirse a Sala
           </Button>
         </Link>
-      </div>
+      </Grid>
     </Container>
   );
 }
