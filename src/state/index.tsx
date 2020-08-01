@@ -62,7 +62,7 @@ export default function AppStateProvider(props: React.PropsWithChildren<{}>) {
       ...contextValue,
       getToken: async (identity, roomName, password) => {
         //const headers = new window.Headers();
-        const endpoint = process.env.REACT_APP_TOKEN_ENDPOINT || '/token';
+        const endpoint = '/v1/token/create';
         //const params = new window.URLSearchParams({ identity, roomName}); //TODO: add password dp
 
         return fetch(`${endpoint}`, {
