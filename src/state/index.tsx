@@ -61,12 +61,15 @@ export default function AppStateProvider(props: React.PropsWithChildren<{}>) {
     contextValue = {
       ...contextValue,
       getToken: async (identity, roomName, password) => {
-        const headers = new window.Headers();
+        //const headers = new window.Headers();
         const endpoint = process.env.REACT_APP_TOKEN_ENDPOINT || '/token';
         //const params = new window.URLSearchParams({ identity, roomName}); //TODO: add password dp
 
         return fetch(`${endpoint}`, {
-          headers,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
           method: 'POST',
           body: JSON.stringify({ username: identity, chatRoomName: roomName }),
         }).then(res => res.text());
