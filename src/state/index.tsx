@@ -72,7 +72,12 @@ export default function AppStateProvider(props: React.PropsWithChildren<{}>) {
           },
           method: 'POST',
           body: JSON.stringify({ username: identity, chatRoomName: roomName }),
-        }).then(res => res.text());
+        })
+          .then(res => res.json())
+          .then(res => {
+            console.log(res);
+            return res.token;
+          });
       },
     };
   }
