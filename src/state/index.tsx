@@ -75,7 +75,6 @@ export default function AppStateProvider(props: React.PropsWithChildren<{}>) {
         })
           .then(res => res.json())
           .then(res => {
-            console.log(res);
             return res.token;
           });
       },
